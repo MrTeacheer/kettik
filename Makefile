@@ -1,5 +1,7 @@
 backend = python src/manage.py
 
+up:
+	@sudo docker compose -f .devops/backend.yaml up --build
 run:
 	@$(backend) runserver 8001
 

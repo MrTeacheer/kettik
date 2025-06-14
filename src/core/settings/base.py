@@ -5,6 +5,7 @@ from .cors import *
 from .modeltranslation import *
 from .jazzmin import *
 from .swagger import *
+from .celery import *
 
 load_dotenv()
 
@@ -15,6 +16,8 @@ PROD = os.getenv("PROD") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
+PLACE_ID = os.getenv("PLACE_ID")
+XAPI_KEY = os.getenv("XAPI_KEY")
 if PROD:
     from .prod import *
 else:
@@ -35,6 +38,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "drf_spectacular",
     "django_cleanup.apps.CleanupConfig",
+    "django_celery_beat",
     # apps
     "apps.main_page.apps.MainPageConfig",
     "apps.main_page.apps.CustomAuthConfig",

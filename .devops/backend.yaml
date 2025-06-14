@@ -38,7 +38,38 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - static_volume:/kettik/back_static/
       - media_volume:/kettik/back_media/
+  celery:
+    build:
+      context: ../src/
+    container_name: celery
+    command: celery -A project worker -l info
+    depends_on:
+      - back
+      - redis
+    env_file:
+      - ../src/.env
+    volumes:
+      - ../src/:/kettik/
 
+  celery-beat:
+    build:
+      context: ../src/
+    container_name: celery_beat
+    command: celery -A project beat -l info
+    depends_on:
+      - back
+      - redis
+    env_file:
+      - ../src/.env
+    volumes:
+      - ../src/:/kettik/
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
 volumes:
   postgres_data:
   static_volume:

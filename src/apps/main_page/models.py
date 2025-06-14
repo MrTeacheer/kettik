@@ -27,14 +27,13 @@ class Application(BaseModel):
 
 class GoogleReviews(BaseModel):
     name = models.CharField(max_length=300)
-    avatar = models.URLField()
-    rating = models.IntegerField()
-    text = models.TextField()
+    avatar = models.URLField(null=True,blank=True)
+    rating = models.IntegerField(null=True,blank=True)
+    text = models.TextField(null=True,blank=True)
     created_at = models.DateTimeField()
 
     class Meta:
-        unique_together = ("name", "avatar")
-        ordering = ("-created_at", "-rating")
+        unique_together = ("name", "created_at")
         verbose_name = "Отзывы с гугла"
         verbose_name_plural = "Отзывы с гугла"
 

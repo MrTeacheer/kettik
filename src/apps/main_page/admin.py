@@ -24,7 +24,8 @@ class ApplAdmin(admin.ModelAdmin):
 class GoogleAdmin(admin.ModelAdmin):
     list_display = ("name", "avatar", "rating")
     search_fields = ("name", "rating")
-    list_filter = ("rating",)
+    list_filter = ("rating", "created_at")
+    ordering = ("-created_at",)
 
 
 @admin.register(models.Contacts)
