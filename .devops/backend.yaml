@@ -42,7 +42,7 @@ services:
     build:
       context: ../src/
     container_name: celery
-    command: celery -A project worker -l info
+    command: celery -A core worker -l info
     depends_on:
       - back
       - redis
@@ -55,7 +55,7 @@ services:
     build:
       context: ../src/
     container_name: celery_beat
-    command: celery -A project beat -l info
+    command: celery -A core beat -l info
     depends_on:
       - back
       - redis
