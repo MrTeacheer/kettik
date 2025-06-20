@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # packages
     "rest_framework",
     "phonenumber_field",
+    'corsheaders',
     "drf_spectacular",
     "django_cleanup.apps.CleanupConfig",
     "django_celery_beat",
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

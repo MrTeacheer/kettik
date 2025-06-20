@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-
+from common.utils.logger import logger
 load_dotenv()
 
 
