@@ -42,7 +42,7 @@ services:
     build:
       context: ../src/
     container_name: celery
-    command: celery -A core worker -l info
+    command: celery -A core worker -l info -E
     depends_on:
       - back
       - redis

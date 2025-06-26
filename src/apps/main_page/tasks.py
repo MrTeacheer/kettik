@@ -4,6 +4,7 @@ import json
 from django.utils.dateparse import parse_datetime
 from .models import GoogleReviews
 from django.conf import settings
+from common.utils.logger import logger
 
 
 @shared_task
@@ -36,3 +37,4 @@ def fetch_google_reviews():
         )
 
     GoogleReviews.objects.bulk_create(reviews, ignore_conflicts=True)
+    logger.info("GOOGLE REVIEWS FETCH SUCCESS")
