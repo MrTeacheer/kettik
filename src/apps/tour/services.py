@@ -24,6 +24,8 @@ class TourService(BaseService[models.Tour]):
             return cls.model.objects.filter(
                 is_active=True, duration__gte=min_days
             ).order_by("-created_at")
+        else:
+            return cls.model.objects.filter(is_active=True).order_by("-created_at")
 
 
 class FAQService(BaseService[models.FAQ]):

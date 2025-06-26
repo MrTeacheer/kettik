@@ -1,10 +1,10 @@
 from django.db import models
 from common.base.model import BaseModel
 from phonenumber_field.modelfields import PhoneNumberField
-
+from common.utils.fields import CompressedImageField
 
 class Banner(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="main_page/")
+    image = CompressedImageField(verbose_name="фото", upload_to="main_page/")
     title = models.CharField(max_length=500, verbose_name="зоголовок")
     subtitle = models.TextField(verbose_name="подзоголовок")
 
@@ -23,7 +23,7 @@ class History(BaseModel):
 
 
 class Images(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="about_us/")
+    image = CompressedImageField(verbose_name="фото", upload_to="about_us/")
 
     class Meta:
         verbose_name = "Фотки"
@@ -49,7 +49,7 @@ class InDigits(BaseModel):
 
 class Team(BaseModel):
     name = models.CharField(max_length=500, verbose_name="имя фамилие")
-    image = models.ImageField(verbose_name="фото", upload_to="about_us/")
+    image = CompressedImageField(verbose_name="фото", upload_to="about_us/")
     text = models.TextField(verbose_name="текст")
     phone = PhoneNumberField(verbose_name="номер")
 

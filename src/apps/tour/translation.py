@@ -14,7 +14,7 @@ class TourTrans(TranslationOptions):
 
 @register(models.TourProgram)
 class TourProgramTrans(TranslationOptions):
-    fields = ("title", "text")
+    fields = ("text",)
 
 
 @register(models.Advantages)
@@ -27,12 +27,7 @@ class FAQtrans(TranslationOptions):
     fields = ("question", "answer")
 
 
-@register(models.Country)
-class Countrytrans(TranslationOptions):
-    fields = ("name",)
-
-
-@register(models.Places)
+@register(models.LivingPlaces)
 class Placestrans(TranslationOptions):
     fields = ("name",)
 

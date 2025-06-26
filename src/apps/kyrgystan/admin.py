@@ -13,6 +13,11 @@ class BannerAdmin(TranslatorMediaMixin):
         "image",
     )
 
+    def has_add_permission(self, request):
+        if models.Banner.objects.count()>=1:
+            return False
+        return True
+
 
 @admin.register(models.Article)
 class ArticleAdmin(TranslatorMediaMixin):
@@ -23,4 +28,3 @@ class ArticleAdmin(TranslatorMediaMixin):
     search_fields = ("title",)
 
 
-# Register your models here.

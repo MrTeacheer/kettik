@@ -1,9 +1,9 @@
 from django.db import models
 from common.base.model import BaseModel
-
+from common.utils.fields import CompressedImageField
 
 class Banner(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="main_page/")
+    image = CompressedImageField(verbose_name="фото", upload_to="main_page/")
     title = models.CharField(max_length=500, verbose_name="зоголовок")
     subtitle = models.TextField(verbose_name="подзоголовок")
 
@@ -24,7 +24,7 @@ class PlaceName(BaseModel):
 
 
 class PlaceGallary(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="gallary/")
+    image = CompressedImageField(verbose_name="фото", upload_to="gallary/")
     place = models.ForeignKey(
         PlaceName, on_delete=models.CASCADE, related_name="images"
     )

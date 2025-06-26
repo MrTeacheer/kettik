@@ -24,8 +24,17 @@ class TourView(CustomListAPIView):
 class TourDetailView(CustomRetieveAPIView):
     serializer_class = serializers.TourDetailSerializer
     service_class = services.TourService
-    prefetch_ = ["images", "programs", "disadvantages", "advantages"]
-    select_ = ["type", "place"]
+    prefetch_ = [
+        "images",
+        "programs",
+        "disadvantages",
+        "advantages",
+        "go_dates",
+        "living_places",
+    ]
+    select_ = [
+        "type",
+    ]
 
 
 @swagger.faq_schema

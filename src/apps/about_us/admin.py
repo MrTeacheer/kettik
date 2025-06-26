@@ -7,6 +7,11 @@ from . import models
 class BannerAdmin(TranslatorMediaMixin):
     list_display = ("title", "image", "subtitle")
 
+    def has_add_permission(self, request):
+        if models.Banner.objects.count() >= 1:
+            return False
+        return True
+
 
 @admin.register(models.History)
 class HistoryAdmin(TranslatorMediaMixin):
@@ -16,12 +21,17 @@ class HistoryAdmin(TranslatorMediaMixin):
 @admin.register(models.Images)
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ("image",)
-    list_display_links = ('image',)
+    list_display_links = ("image",)
 
 
 @admin.register(models.InDigits)
 class InDigitsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("years", "amount_tourist", "amount_paths", "amount_gids")
+
+    def has_add_permission(self, request):
+        if models.InDigits.objects.count() >= 1:
+            return False
+        return True
 
 
 @admin.register(models.Team)

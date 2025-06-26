@@ -14,6 +14,7 @@ from django.conf import settings
 class GoogleReviewsView(CustomListAPIView):
     serializer_class = serializers.GoogleReviewsSerializer
     service_class = services.GoogleReviewsService
+    order_by_ = ["-rating", "-created_at"]
 
 
 @swagger.banner_schema

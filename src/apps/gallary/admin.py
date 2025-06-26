@@ -9,6 +9,11 @@ class BannerAdmin(TranslatorMediaMixin):
         "title",
         "subtitle",
     )
+    def has_add_permission(self, request):
+        if models.Banner.objects.count()>=1:
+            return False
+        return True
+
 
 
 class PlaceGallaryInline(admin.StackedInline):

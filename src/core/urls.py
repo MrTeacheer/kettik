@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
+    path("summernote/", include("django_summernote.urls")),
     # API
     path("api/v1/main/page/", include("apps.main_page.urls")),
     path("api/v1/gallary/", include("apps.gallary.urls")),

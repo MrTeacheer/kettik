@@ -62,8 +62,25 @@ class TourProgramsSerializer(serializers.ModelSerializer):
             "id",
             "image",
             "day",
-            "title",
             "text",
+        )
+
+
+class GoDatesTour(serializers.ModelSerializer):
+    class Meta:
+        model = models.GoDateTour
+        fields = (
+            "id",
+            "go_date",
+        )
+
+
+class LivingPlacesTour(serializers.ModelSerializer):
+    class Meta:
+        model = models.LivingPlaces
+        fields = (
+            "id",
+            "name",
         )
 
 
@@ -71,11 +88,12 @@ class TourDetailSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
     video = serializers.SerializerMethodField()
     type = serializers.CharField(source="type.name")
-    place = serializers.CharField(source="place.name")
     disadvantages = AdvantagesSerializer(many=True)
     advantages = AdvantagesSerializer(many=True)
     images = TourImagesSerializer(many=True)
     programs = TourProgramsSerializer(many=True)
+    go_dates = GoDatesTour(many=True)
+    living_places = LivingPlacesTour(many=True)
 
     class Meta:
         model = models.Tour
@@ -84,16 +102,16 @@ class TourDetailSerializer(serializers.ModelSerializer):
             "image",
             "title",
             "price",
-            "go_date",
             "duration",
             "difficulty",
             "type",
-            "place",
             "map",
             "advantages",
             "disadvantages",
             "images",
             "programs",
+            "go_dates",
+            "living_places",
         )
 
     def get_image(self, obj):
@@ -113,4 +131,4 @@ class FAQSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.FAQ
-        fields = ("id","question", "answer")
+        fields = ("id", "question", "answer")

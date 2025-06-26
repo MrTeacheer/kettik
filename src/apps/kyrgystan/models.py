@@ -1,9 +1,9 @@
 from django.db import models
 from common.base.model import BaseModel
-
+from common.utils.fields import CompressedImageField
 
 class Banner(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="main_page/")
+    image = CompressedImageField(verbose_name="фото", upload_to="main_page/")
     title = models.CharField(max_length=500, verbose_name="зоголовок")
     subtitle = models.TextField(verbose_name="подзоголовок")
 
@@ -15,7 +15,7 @@ class Banner(BaseModel):
 class Article(BaseModel):
     title = models.CharField(max_length=500, verbose_name="зоголовок")
     text = models.TextField(verbose_name="описание")
-    image = models.ImageField(verbose_name="фото", upload_to="kyrg/")
+    image = CompressedImageField(verbose_name="фото", upload_to="kyrg/")
 
     class Meta:
         verbose_name = "Статья"

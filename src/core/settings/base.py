@@ -6,7 +6,7 @@ from .modeltranslation import *
 from .jazzmin import *
 from .swagger import *
 from .celery import *
-
+from .summernote import *
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # packages
     "rest_framework",
+    "django_summernote",
     "phonenumber_field",
     'corsheaders',
     "drf_spectacular",
@@ -50,9 +51,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

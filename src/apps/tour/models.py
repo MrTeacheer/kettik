@@ -1,9 +1,9 @@
 from django.db import models
 from common.base.model import BaseModel
-
+from common.utils.fields import CompressedImageField
 
 class Banner(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="main_page/")
+    image = CompressedImageField(verbose_name="фото", upload_to="main_page/")
     title = models.CharField(max_length=500, verbose_name="зоголовок")
     subtitle = models.TextField(verbose_name="подзоголовок")
 
@@ -16,14 +16,10 @@ class Tour(BaseModel):
     photo_video = models.FileField(verbose_name="фото или видео", upload_to="tour/")
     title = models.CharField(verbose_name="зоголовок", max_length=500)
     price = models.PositiveIntegerField(verbose_name="цена")
-    go_date = models.DateField(verbose_name="Дата выезда")
     duration = models.PositiveSmallIntegerField(verbose_name="Длительность")
     difficulty = models.CharField(verbose_name="Сложность", max_length=500)
     type = models.ForeignKey(
         "TourType", verbose_name="тип", related_name="tours", on_delete=models.PROTECT
-    )
-    place = models.ForeignKey(
-        "Places", verbose_name="место", on_delete=models.PROTECT, related_name="tours"
     )
     map = models.TextField(verbose_name="карта-iframe")
     advantages = models.ManyToManyField(
@@ -44,6 +40,27 @@ class Tour(BaseModel):
         verbose_name_plural = "Туры"
 
 
+class LivingPlaces(BaseModel):
+    name = models.CharField(max_length=500, verbose_name="место проживания")
+    tour = models.ForeignKey(
+        Tour, on_delete=models.CASCADE, related_name="living_places"
+    )
+
+    class Meta:
+        verbose_name = "Места проживание"
+        verbose_name_plural = "Места проживание"
+
+
+class GoDateTour(BaseModel):
+    go_date = models.DateField(verbose_name="дата")
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name="go_dates")
+
+    class Meta:
+        verbose_name = "Дата выезда"
+        verbose_name_plural = "Даты выезда"
+
+
+
 class TourType(BaseModel):
     name = models.CharField(verbose_name="тип", max_length=500, unique=True)
 
@@ -56,7 +73,7 @@ class TourType(BaseModel):
 
 
 class TourGallary(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="tour/")
+    image = CompressedImageField(verbose_name="фото", upload_to="tour/")
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name="images")
 
     class Meta:
@@ -65,9 +82,8 @@ class TourGallary(BaseModel):
 
 
 class TourProgram(BaseModel):
-    image = models.ImageField(verbose_name="фото", upload_to="tour/")
+    image = CompressedImageField(verbose_name="фото", upload_to="tour/")
     day = models.PositiveSmallIntegerField(verbose_name="день")
-    title = models.CharField(verbose_name="зоголовок", max_length=500)
     text = models.TextField(verbose_name="описание")
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name="programs")
 
@@ -96,23 +112,23 @@ class FAQ(BaseModel):
         verbose_name_plural = "FAQ"
 
 
-class Country(BaseModel):
-    name = models.CharField(max_length=500, verbose_name="страна")
+# class Country(BaseModel):
+#     name = models.CharField(max_length=500, verbose_name="страна")
 
-    class Meta:
-        verbose_name = "Страны"
-        verbose_name_plural = "Страны"
+#     class Meta:
+#         verbose_name = "Страны"
+#         verbose_name_plural = "Страны"
 
 
-class Places(BaseModel):
-    name = models.CharField(max_length=500, verbose_name="место")
-    country = models.ForeignKey(
-        Country, on_delete=models.CASCADE, verbose_name="страна", related_name="places"
-    )
+# class Places(BaseModel):
+#     name = models.CharField(max_length=500, verbose_name="место")
+#     country = models.ForeignKey(
+#         Country, on_delete=models.CASCADE, verbose_name="страна", related_name="places"
+#     )
 
-    def __str__(self):
-        return f"{self.country.name}-{self.name}"
+#     def __str__(self):
+#         return f"{self.country.name}-{self.name}"
 
-    class Meta:
-        verbose_name = "Места"
-        verbose_name_plural = "Места"
+#     class Meta:
+#         verbose_name = "Места"
+#         verbose_name_plural = "Места"
