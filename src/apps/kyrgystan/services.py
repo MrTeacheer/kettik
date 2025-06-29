@@ -8,3 +8,7 @@ class BannerService(BaseService[models.Banner]):
 
 class ArticleService(BaseService[models.Article]):
     model = models.Article
+
+
+class RegionService(BaseService[models.Regions]):
+    model = models.Regions

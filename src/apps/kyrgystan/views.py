@@ -1,4 +1,4 @@
-from . import serializers, services, swagger,pagination
+from . import serializers, services, swagger, pagination
 from common.base.generics import CustomRetieveAPIView, CustomListAPIView
 
 
@@ -13,3 +13,9 @@ class ArticleView(CustomListAPIView):
     serializer_class = serializers.ArticleSerializer
     service_class = services.ArticleService
     pagination_class = pagination.ArticlePagination
+
+
+@swagger.region_schema
+class RegionView(CustomListAPIView):
+    serializer_class = serializers.RegionSerializer
+    service_class = services.RegionService

@@ -1,5 +1,8 @@
 from django.contrib import admin
-from common.base.trans_checkbox import TranslatorMediaMixin
+from common.base.trans_checkbox import (
+    TranslatorMediaMixin,
+    TranslatorMediaStackedInline,
+)
 from . import models
 
 # Register your models here.
@@ -14,9 +17,15 @@ class BannerAdmin(TranslatorMediaMixin):
     )
 
     def has_add_permission(self, request):
-        if models.Banner.objects.count()>=1:
+        if models.Banner.objects.count() >= 1:
             return False
         return True
+
+
+class ArticleExtraInline(TranslatorMediaStackedInline):
+    fields = ("text", "image")
+    model = models.ArticleExtra
+    extra = 1
 
 
 @admin.register(models.Article)
@@ -26,5 +35,12 @@ class ArticleAdmin(TranslatorMediaMixin):
         "image",
     )
     search_fields = ("title",)
+    inlines = [
+        ArticleExtraInline,
+    ]
 
 
+@admin.register(models.Regions)
+class RegionAdmin(TranslatorMediaMixin):
+    list_display = ("name",)
+    search_fields = ("name",)

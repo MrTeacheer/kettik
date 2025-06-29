@@ -10,3 +10,13 @@ class BannerTrans(TranslationOptions):
 @register(models.Article)
 class ArticleTrans(TranslationOptions):
     fields = ("title", "text")
+
+
+@register(models.ArticleExtra)
+class ArticleTransExtra(TranslationOptions):
+    fields = ("text",)
+
+
+@register(models.Regions)
+class RegionTrans(TranslationOptions):
+    fields = ("text",)

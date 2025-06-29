@@ -30,3 +30,9 @@ article_schema = extend_schema_view(
         ],
     )
 )
+region_schema = extend_schema_view(
+    get=extend_schema(
+        tags=[tag],
+        responses=serializers.RegionSerializer,
+    )
+)
