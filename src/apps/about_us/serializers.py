@@ -36,6 +36,7 @@ class InDigitsSerializer(serializers.ModelSerializer):
             "amount_tourist",
             "amount_paths",
             "amount_gids",
+            "background_image"
         )
 
 
@@ -48,5 +49,4 @@ class TeamSerializer(serializers.ModelSerializer):
             "name",
             "image",
             "text",
-            "phone",
         )

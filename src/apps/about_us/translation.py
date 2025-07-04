@@ -14,4 +14,4 @@ class HistoryTrans(TranslationOptions):
 
 @register(models.Team)
 class TeamTrans(TranslationOptions):
-    fields = ("name", "text")
+    fields = ("name", "text", "duty")

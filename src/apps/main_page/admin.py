@@ -19,10 +19,10 @@ class BannerAdmin(TranslatorMediaMixin):
 
 
 
-@admin.register(models.Application)
-class ApplAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "phone")
-    search_fields = ("email", "name", "phone")
+# @admin.register(models.Application)
+# class ApplAdmin(admin.ModelAdmin):
+#     list_display = ("name", "email", "phone")
+#     search_fields = ("email", "name", "phone")
 
 
 @admin.register(models.GoogleReviews)

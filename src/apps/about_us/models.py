@@ -1,7 +1,7 @@
 from django.db import models
 from common.base.model import BaseModel
-from phonenumber_field.modelfields import PhoneNumberField
 from common.utils.fields import CompressedImageField
+
 
 class Banner(BaseModel):
     image = CompressedImageField(verbose_name="фото", upload_to="main_page/")
@@ -31,6 +31,9 @@ class Images(BaseModel):
 
 
 class InDigits(BaseModel):
+    background_image = CompressedImageField(
+        verbose_name="заднее фото", upload_to="about_us/", null=True
+    )
     years = models.PositiveSmallIntegerField(verbose_name="лет на рынке")
     amount_tourist = models.PositiveIntegerField(
         verbose_name="кол-тво довольных туристов"
@@ -51,7 +54,7 @@ class Team(BaseModel):
     name = models.CharField(max_length=500, verbose_name="имя фамилие")
     image = CompressedImageField(verbose_name="фото", upload_to="about_us/")
     text = models.TextField(verbose_name="текст")
-    phone = PhoneNumberField(verbose_name="номер")
+    duty = models.CharField(verbose_name="должность", null=True)
 
     class Meta:
         verbose_name = "Команда"

@@ -26,7 +26,13 @@ class ImagesAdmin(admin.ModelAdmin):
 
 @admin.register(models.InDigits)
 class InDigitsAdmin(admin.ModelAdmin):
-    list_display = ("years", "amount_tourist", "amount_paths", "amount_gids")
+    list_display = (
+        "years",
+        "amount_tourist",
+        "amount_paths",
+        "amount_gids",
+        "background_image",
+    )
 
     def has_add_permission(self, request):
         if models.InDigits.objects.count() >= 1:
@@ -36,5 +42,5 @@ class InDigitsAdmin(admin.ModelAdmin):
 
 @admin.register(models.Team)
 class TeamAdmin(TranslatorMediaMixin):
-    list_display = ("name", "phone", "image")
-    search_fields = ("name", "phone")
+    list_display = ("name", "duty", "image")
+    search_fields = ("name", "duty")
