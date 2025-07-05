@@ -12,12 +12,14 @@ from django_celery_beat.admin import (
     SolarSchedule,
 )
 from django_summernote.admin import SummernoteInlineModelAdmin
+from django_summernote.models import Attachment
 
 admin.site.unregister(CrontabSchedule)
 admin.site.unregister(ClockedSchedule)
 admin.site.unregister(IntervalSchedule)
 admin.site.unregister(PeriodicTask)
 admin.site.unregister(SolarSchedule)
+admin.site.unregister(Attachment)
 
 
 @admin.register(models.Banner)

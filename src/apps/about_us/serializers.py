@@ -36,7 +36,7 @@ class InDigitsSerializer(serializers.ModelSerializer):
             "amount_tourist",
             "amount_paths",
             "amount_gids",
-            "background_image"
+            "background_image",
         )
 
 
