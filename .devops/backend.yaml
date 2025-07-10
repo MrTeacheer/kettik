@@ -38,6 +38,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - static_volume:/kettik/back_static/
       - media_volume:/kettik/back_media/
+      - ../../kettik-frontend/dist:/kettik-frontend/dist
   celery:
     build:
       context: ../src/
