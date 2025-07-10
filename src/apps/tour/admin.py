@@ -47,6 +47,7 @@ class TourProgramInline(
 ):
     model = models.TourProgram
     fields = ("image", "day", "text")
+    ordering = ("dat",)
     summernote_fields = ("text",)
     extra = 1
 

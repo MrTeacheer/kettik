@@ -49,4 +49,5 @@ class TeamSerializer(serializers.ModelSerializer):
             "name",
             "image",
             "text",
+            "duty"
         )
