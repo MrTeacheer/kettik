@@ -16,3 +16,7 @@ class ApplicationService(BaseService[models.Application]):
 
 class ContactService(BaseService[models.Contacts]):
     model = models.Contacts
+
+
+class ImageSlideService(BaseService[models.ImageSlider]):
+    model = models.ImageSlider

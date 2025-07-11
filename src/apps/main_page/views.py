@@ -57,3 +57,9 @@ class ApplicationView(CustomCreateAPIView):
 class ContactsView(CustomRetieveAPIView):
     serializer_class = serializers.ContactsSerializer
     service_class = services.ContactService
+
+
+@swagger.image_slider_schema
+class ImageSliderView(CustomListAPIView):
+    serializer_class = serializers.ImageSliderSerializer
+    service_class = services.ImageSlideService

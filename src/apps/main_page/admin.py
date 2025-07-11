@@ -12,11 +12,11 @@ class BannerAdmin(TranslatorMediaMixin):
         "subtitle",
         "image",
     )
+
     def has_add_permission(self, request):
-        if models.Banner.objects.count()>=1:
+        if models.Banner.objects.count() >= 1:
             return False
         return True
-
 
 
 # @admin.register(models.Application)
@@ -36,3 +36,9 @@ class GoogleAdmin(admin.ModelAdmin):
 @admin.register(models.Contacts)
 class ContactsAdmin(admin.ModelAdmin):
     list_display = ("phone", "whatsapp", "telegram", "instagram")
+
+
+@admin.register(models.ImageSlider)
+class ImageSliderAdmin(admin.ModelAdmin):
+    list_display = ("image",)
+    ordering = ("-created_at",)

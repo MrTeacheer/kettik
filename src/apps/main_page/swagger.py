@@ -30,3 +30,6 @@ reviews_schema = extend_schema_view(
     )
 )
 
+image_slider_schema = extend_schema_view(
+    get=extend_schema(tags=[tag], responses=serializers.ImageSliderSerializer)
+)

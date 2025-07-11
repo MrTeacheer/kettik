@@ -8,7 +8,7 @@ class GoogleReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.GoogleReviews
         fields = (
-            'id',
+            "id",
             "name",
             "avatar",
             "rating",
@@ -25,6 +25,16 @@ class BannerSerializer(serializers.ModelSerializer):
             "image",
             "title",
             "subtitle",
+        )
+
+
+class ImageSliderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.ImageSlider
+        fields = (
+            "id",
+            "image",
         )
 
 
